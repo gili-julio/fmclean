@@ -122,39 +122,48 @@
     },
     {
       "lean": "example (P Q : Type) (p : P) (h : P → Q) : Q :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "exact h(p),\r\n"
     },
     {
       "lean": "example : mynat → mynat :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro n,\r\nexact 5000000000000*n,\r\n"
     },
     {
       "lean": "example (P Q R S T U: Type)\n(p : P)\n(h : P → Q)\n(i : Q → R)\n(j : Q → T)\n(k : S → T)\n(l : T → U)\n: U :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "have q := h(p),\r\nhave t := j(q),\r\nexact l(t),\r\n"
     },
     {
       "lean": "example (P Q R S T U: Type)\n(p : P)\n(h : P → Q)\n(i : Q → R)\n(j : Q → T)\n(k : S → T)\n(l : T → U)\n: U :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "have q := h(p),\r\nhave t := j(q),\r\nexact l(t),\r\n"
     },
     {
       "lean": "example (P Q : Type) : P → (Q → P) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros p q,\r\nexact p,"
     },
     {
       "lean": "example (P Q R : Type) : (P → (Q → R)) → ((P → Q) → (P → R)) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros pr pq p,\r\napply pr,\r\nexact p,\r\napply pq,\r\nexact p,"
     },
     {
       "lean": "example (P Q F : Type) : (P → Q) → ((Q → F) → (P → F)) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros pq qf p,\r\napply qf,\r\napply pq,\r\nexact p,"
     },
     {
       "lean": "example (P Q : Type) : (P → Q) → ((Q → empty) → (P → empty)) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros pq q0 p,\r\napply q0,\r\napply pq,\r\nexact p,"
     },
     {
       "lean": "example (A B C D E F G H I J K L : Type)\n(f1 : A → B) (f2 : B → E) (f3 : E → D) (f4 : D → A) (f5 : E → F)\n(f6 : F → C) (f7 : B → C) (f8 : F → G) (f9 : G → J) (f10 : I → J)\n(f11 : J → I) (f12 : I → H) (f13 : E → H) (f14 : H → K) (f15 : I → L)\n : A → L :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro a,\r\napply f15,\r\napply f11,\r\napply f9,\r\napply f8,\r\napply f5,\r\napply f2,\r\nexact f1(a),"
     },
     {
       "lean": "example (P Q : Prop) (p : P) (h : P → Q) : Q :=\n",

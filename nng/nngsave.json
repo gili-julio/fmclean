@@ -99,35 +99,43 @@
     },
     {
       "lean": "lemma zero_pow_zero : (0 : mynat) ^ (0 : mynat) = 1 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw pow_zero,\r\nrefl,"
     },
     {
       "lean": "lemma zero_pow_succ (m : mynat) : (0 : mynat) ^ (succ m) = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw pow_succ,\r\nrw mul_zero,\r\nrefl,"
     },
     {
       "lean": "lemma pow_one (a : mynat) : a ^ (1 : mynat) = a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw one_eq_succ_zero,\r\nrw pow_succ,\r\nrw pow_zero,\r\nrw one_mul,\r\nrefl,"
     },
     {
       "lean": "lemma one_pow (m : mynat) : (1 : mynat) ^ m = 1 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction m with m' hm,\r\nrw pow_zero,\r\nrefl,\r\nrw pow_succ,\r\nrw hm,\r\nrw mul_one,\r\nrefl,"
     },
     {
       "lean": "lemma pow_add (a m n : mynat) : a ^ (m + n) = a ^ m * a ^ n :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction n with n' hn,\r\nrw add_zero,\r\nrw pow_zero,\r\nrw mul_one,\r\nrefl,\r\n\r\nrw add_succ,\r\nrw pow_succ,\r\nrw pow_succ,\r\nrw hn,\r\nrw mul_assoc,\r\nrefl,"
     },
     {
       "lean": "lemma mul_pow (a b n : mynat) : (a * b) ^ n = a ^ n * b ^ n :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction n with n' hn,\r\nrw pow_zero,\r\nrw pow_zero,\r\nrw pow_zero,\r\nrefl,\r\n\r\nrw pow_succ (a * b) n',\r\nrw pow_succ a n',\r\nrw mul_assoc (a ^ n') a (b ^ succ n'),\r\nrw mul_comm a (b ^ succ n'),\r\nrw pow_succ b n',\r\nrw mul_assoc (b ^ n') b a,\r\nrw mul_comm b a,\r\nrw hn,\r\nrw mul_assoc,\r\nrefl,"
     },
     {
       "lean": "lemma pow_pow (a m n : mynat) : (a ^ m) ^ n = a ^ (m * n) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction n with n' hn,\r\nrw pow_zero,\r\nrw mul_zero,\r\nrw pow_zero,\r\nrefl,\r\n\r\nrw pow_succ,\r\nrw mul_succ,\r\nrw hn,\r\nrw pow_add,\r\nrefl,"
     },
     {
       "lean": "lemma add_squared (a b : mynat) :\n  (a + b) ^ (2 : mynat) = a ^ (2 : mynat) + b ^ (2 : mynat) + 2 * a * b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw two_eq_succ_one,\r\nrw one_eq_succ_zero,\r\nrepeat {rw pow_succ},\r\nrw pow_zero (a + b),\r\nrw pow_zero a,\r\nrw pow_zero b,\r\nrw one_mul (a + b),\r\nrw one_mul a,\r\nrw one_mul b,\r\nrw add_mul a b (a + b),\r\nrw mul_add a a b,\r\nrw mul_add b a b,\r\nrw succ_mul (succ 0) a,\r\nrw succ_mul 0 a,\r\nrw zero_mul a,\r\nrw zero_add a,\r\nrw add_mul a a b,\r\nrw mul_comm b a,\r\nrw add_comm (a * b) (b * b),\r\nrw add_right_comm,\r\nrw add_assoc (a * a) (b * b + a * b) (a * b),\r\nrw add_assoc (b * b) (a * b) (a * b),\r\nrw add_assoc,\r\nrefl,"
     },
     {
       "lean": "example (P Q : Type) (p : P) (h : P → Q) : Q :=\n",

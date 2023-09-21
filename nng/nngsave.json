@@ -344,19 +344,23 @@
     },
     {
       "lean": "theorem mul_pos (a b : mynat) : a ≠ 0 → b ≠ 0 → a * b ≠ 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros x y z,\r\ncases b with b',\r\nrw mul_zero at z,\r\nexact y(z),\r\n\r\nrw mul_succ at z,\r\nhave w := add_left_eq_zero(z),\r\nexact x(w),\r\n"
     },
     {
       "lean": "theorem eq_zero_or_eq_zero_of_mul_eq_zero (a b : mynat) (h : a * b = 0) :\n  a = 0 ∨ b = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "cases a with a',\r\nleft,\r\nrefl,\r\n\r\nrw succ_mul at h,\r\nhave w := add_left_eq_zero(h),\r\nright,\r\nexact w,\r\n"
     },
     {
       "lean": "theorem mul_eq_zero_iff (a b : mynat): a * b = 0 ↔ a = 0 ∨ b = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "split,\r\nhave h := eq_zero_or_eq_zero_of_mul_eq_zero a b,\r\nintro i,\r\nexact h(i),\r\n\r\nintro h,\r\ncases h with a b,\r\nrw a,\r\nrw zero_mul,\r\nrefl,\r\nrw b,\r\nrw mul_zero,\r\nrefl,\r\n"
     },
     {
       "lean": "theorem mul_left_cancel (a b c : mynat) (ha : a ≠ 0) : a * b = a * c → b = c :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction c with c' w generalizing b,\r\nrw mul_zero a,\r\nintro h,\r\nrw mul_eq_zero_iff at h,\r\ncases h with a b,\r\nexfalso,\r\nexact ha(a),\r\nexact b,\r\n\r\nintro i,\r\ncases b,\r\nrw mul_zero at i,\r\nsymmetry at i,\r\nrw mul_eq_zero_iff a (succ c') at i,\r\ncases i,\r\nexfalso,\r\nexact ha(i),\r\n\r\nsymmetry,\r\nexact i,\r\n\r\napply succ_eq_succ_of_eq,\r\nrw mul_succ a b at i,\r\nrw mul_succ a c' at i,\r\nrw add_right_cancel_iff at i,\r\nhave j := w(b),\r\nexact j(i),"
     },
     {
       "lean": "lemma one_add_le_self (x : mynat) : x ≤ 1 + x :=\n",

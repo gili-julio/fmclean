@@ -311,25 +311,67 @@ end
 theorem distr_conj_disj :
   P∧(Q∨R) → (P∧Q)∨(P∧R)  :=
 begin
-  sorry,
+  intro peqor,
+  have p : P := peqor.left,
+  have qor : Q ∨ R := peqor.right,
+  cases qor with q r,
+  left,
+  split,
+  exact p,
+  exact q,
+  right,
+  split,
+  exact p,
+  exact r,
 end
 
 theorem distr_conj_disj_converse :
   (P∧Q)∨(P∧R) → P∧(Q∨R)  :=
 begin
-  sorry,
+  intro peqoper,
+  cases peqoper with peq per,
+  split,
+  exact peq.left,
+  left,
+  exact peq.right,
+  split,
+  exact per.left,
+  right,
+  exact per.right,
 end
 
 theorem distr_disj_conj :
   P∨(Q∧R) → (P∨Q)∧(P∨R)  :=
 begin
-  sorry,
+  intro poqer,
+  cases poqer with p qer,
+  split,
+  left,
+  exact p,
+  left,
+  exact p,
+  split,
+  right,
+  exact qer.left,
+  right,
+  exact qer.right,
 end
 
 theorem distr_disj_conj_converse :
   (P∨Q)∧(P∨R) → P∨(Q∧R)  :=
 begin
-  sorry,
+  intro poqepor,
+  cases poqepor with poq por,
+  cases poq with p q,
+  left,
+  exact p,
+  cases por with p r,
+  left,
+  exact p,
+  right,
+  split,
+  exact q,
+  exact r,
 end
 
 
@@ -340,13 +382,23 @@ end
 theorem curry_prop :
   ((P∧Q)→R) → (P→(Q→R))  :=
 begin
-  sorry,
+  intro peqtr,
+  intro p,
+  intro q,
+  apply peqtr,
+  split,
+  exact p,
+  exact q,
 end
 
 theorem uncurry_prop :
   (P→(Q→R)) → ((P∧Q)→R)  :=
 begin
-  sorry,
+  intro ptqtr,
+  intro peq,
+  apply ptqtr,
+  exact peq.left,
+  exact peq.right,
 end
 
 
@@ -357,7 +409,8 @@ end
 theorem impl_refl :
   P → P  :=
 begin
-  sorry,
+  intro p,
+  exact p,
 end
 
 ------------------------------------------------
@@ -367,37 +420,56 @@ end
 theorem weaken_disj_right :
   P → (P∨Q)  :=
 begin
-  sorry,
+  intro p,
+  left,
+  exact p,
 end
 
 theorem weaken_disj_left :
   Q → (P∨Q)  :=
 begin
-  sorry,
+  intro q,
+  right,
+  exact q,
 end
 
 theorem weaken_conj_right :
   (P∧Q) → P  :=
 begin
-  sorry,
+  intro peq,
+  exact peq.left,
 end
 
 theorem weaken_conj_left :
   (P∧Q) → Q  :=
 begin
-  sorry,
+  intro peq,
+  exact peq.right,
 end
 
 theorem conj_idempot :
   (P∧P) ↔ P :=
 begin
-  sorry,
+  split,
+  intro pep,
+  exact pep.left,
+  intro p,
+  split,
+  exact p,
+  exact p,
 end
 
 theorem disj_idempot :
   (P∨P) ↔ P  :=
 begin
-  sorry,
+  split,
+  intro pop,
+  cases pop with p p,
+  exact p,
+  exact p,
+  intro p,
+  left,
+  exact p,
 end
 
 end propositional
